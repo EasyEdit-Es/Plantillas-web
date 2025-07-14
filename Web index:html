@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantillas IA Web - Crea tu sitio en segundos</title>
+  <!-- Google Fonts y estilos… (igual que antes) -->
+  <!-- … -->
+</head>
+<body>
+  <!-- Header, Hero y demás secciones… (igual que tu versión) -->
+  <!-- … -->
+
+  <!-- Plantillas Section -->
+  <section class="plantillas" id="plantillas">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nuestras Plantillas</h2>
+        <p>Selecciona la plantilla perfecta para tu proyecto.</p>
+      </div>
+      <div class="plantillas-grid">
+
+        <!-- Plantilla Empresarial -->
+        <div class="plantilla-card">
+          <!-- …imagen y texto… -->
+          <div class="precio">49,99 €</div>
+
+          <!-- ★ PAYPAL BOTÓN: Empresarial -->
+          <div id="paypal-empresarial"></div>
+        </div>
+
+        <!-- Plantilla Portafolio -->
+        <div class="plantilla-card">
+          <!-- …imagen y texto… -->
+          <div class="precio">39,99 €</div>
+
+          <!-- ★ PAYPAL BOTÓN: Portafolio -->
+          <div id="paypal-portafolio"></div>
+        </div>
+
+        <!-- Plantilla Tienda -->
+        <div class="plantilla-card">
+          <!-- …imagen y texto… -->
+          <div class="precio">59,99 €</div>
+
+          <!-- ★ PAYPAL BOTÓN: Tienda -->
+          <div id="paypal-tienda"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer… -->
+  <!-- … -->
+
+  <!-- PAYPAL SDK (solo UNA vez) -->
+  <script src="https://www.paypal.com/sdk/js?
+    client-id=👈AQUÍ_TU_CLIENT_ID👉
+    &currency=EUR">
+  </script>
+
+  <script>
+    // === BOTÓN EMPRESARIAL ===
+    paypal.Buttons({
+      createOrder: (data, actions) => actions.order.create({
+        purchase_units: [{ amount: { value: '49.99' } }]
+      }),
+      onApprove: (data, actions) => actions.order.capture().then(() => {
+        // 👇 Cambia esta URL por la de tu ZIP subido
+        window.location.href = "https://tuusuario.github.io/plantillasweb/plantilla-empresarial.zip";
+      })
+    }).render('#paypal-empresarial');
+
+    // === BOTÓN PORTAFOLIO ===
+    paypal.Buttons({
+      createOrder: (data, actions) => actions.order.create({
+        purchase_units: [{ amount: { value: '39.99' } }]
+      }),
+      onApprove: (data, actions) => actions.order.capture().then(() => {
+        window.location.href = "https://tuusuario.github.io/plantillasweb/plantilla-portafolio.zip";
+      })
+    }).render('#paypal-portafolio');
+
+    // === BOTÓN TIENDA ===
+    paypal.Buttons({
+      createOrder: (data, actions) => actions.order.create({
+        purchase_units: [{ amount: { value: '59.99' } }]
+      }),
+      onApprove: (data, actions) => actions.order.capture().then(() => {
+        window.location.href = "https://tuusuario.github.io/plantillasweb/plantilla-tienda.zip";
+      })
+    }).render('#paypal-tienda');
+  </script>
+</body>
+</html>
